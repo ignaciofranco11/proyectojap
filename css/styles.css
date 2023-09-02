@@ -85,6 +85,24 @@ footer p {
   color: black;
 }
 
+.dropzone {
+  border: 2px dashed #0087F7;
+  border-radius: 5px;
+  background: white;
+}
+
+.img-fit {
+  max-height: 100%;
+}
+
+.alert {
+  position: fixed;
+  top: 80px;
+  width: 50%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
 .lds-ring {
   display: inline-block;
   position: relative;
@@ -181,8 +199,7 @@ a.custom-card:hover {
   align-items: center;
   justify-content: center;
   margin-top: 10%;
-  animation: blur-in-expand 0.8s linear both;
- 
+  animation: blur-in-expand 0.8s linear both
 }
 
 @keyframes blur-in-expand {
@@ -207,7 +224,6 @@ a.custom-card:hover {
   padding: 60px 25px;
   box-shadow: 0 5px 10px rgba(71, 3, 6, 0.7);
   border-radius: 25px;
-  position: relative;
 }
 
 #titleLogin {
@@ -249,11 +265,10 @@ a.custom-card:hover {
   font-size: 20px;
 }
 
-#logobio { 
-display: flex;
-justify-content: center;
-position: absolute;
-top: 8px;
-left: 50%;
-transform: translateX(-50%);
+#username{
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  transition: color 0.2s;
 }
+

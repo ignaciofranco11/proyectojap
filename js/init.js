@@ -41,8 +41,12 @@ let getJSONData = function (url) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  let usuarioCargado = localStorage.getItem("sesion");
-  if (!usuarioCargado) {
+  let usuarioCargado = JSON.parse(sessionStorage.getItem("sesion"));
+  let usernameElement = document.getElementById('username');
+
+  if (usuarioCargado) {
+    usernameElement.textContent = `Hola, ${usuarioCargado.usuario}`;
+  } else {
     Swal.fire({
       title: 'No has Iniciado Sesion',
       text: "Es mejor que inicies sesion para continuar",
