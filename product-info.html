@@ -40,10 +40,27 @@
     </div>
   </nav>
   <main>
+
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div id= "infoProducto"></div>
+      <div id="contenedor"></div>
+      <br><br>
+      <div id="comment-form">
+        <label for="comment">Comentario:</label>
+        <textarea id="comment" rows="4" cols="50"></textarea>
+    
+        <label for="rating">Puntuación:</label>
+        <select id="rating">
+            <option value="1">1 Estrella</option>
+            <option value="2">2 Estrellas</option>
+            <option value="3">3 Estrellas</option>
+            <option value="4">4 Estrellas</option>
+            <option value="5">5 Estrellas</option>
+        </select>
+    
+        <button type="button" id="btnSend">Enviar Comentario</button>
       </div>
+      
     </div>
   </main>
   <footer class="text-muted">

@@ -16,11 +16,16 @@ function namesCat(Array){
     htmlContentToAppend += Array.catName
     nombre.innerHTML += htmlContentToAppend;
 }
+
+function setProdID(id) {
+    localStorage.setItem("ProdID", id);
+    window.location = "product-info.html"
+}
 function showData(Array) {
     let htmlContentToAppend = "";
     for (const item of Array) {
         htmlContentToAppend += `
-        <div class="list-group-item list-group-item-action cursor-active">
+        <div onclick="setProdID(${item.id})" class="list-group-item list-group-item-action cursor-active">
         <div class="row">
             <div class="col-3">
                 <img src="${item.image}" class="img-thumbnail">
