@@ -63,3 +63,34 @@ document.addEventListener("DOMContentLoaded", function () {
     })
   }
 });
+document.addEventListener("DOMContentLoaded", function () {
+  // Obtengo el botón "Día/Noche" por su ID
+  const darkModeButton = document.getElementById("darkModeSwitch");
+  const body = document.body;
+
+  // Función para cambiar el modo
+  function cambiarModo() {
+    const isDarkMode = body.classList.contains("dark-mode");
+    if (isDarkMode) {
+      body.classList.remove("dark-mode");
+      localStorage.setItem("claseBody", "light"); // Guardo el modo "light" en el Local Storage
+    } else {
+      body.classList.add("dark-mode");
+      localStorage.setItem("claseBody", "dark"); // Guardo el modo "dark" en el Local Storage
+    }
+  }
+
+  // Escuchar el evento clic en el botón "Día/Noche"
+  darkModeButton.addEventListener("click", cambiarModo);
+
+  // Obtengo el estado almacenado en el Local Storage
+  const claseActual = localStorage.getItem("claseBody");
+
+  // Aplico la clase al cuerpo si está almacenada en el Local Storage
+  if (claseActual === "dark") {
+    body.classList.add("dark-mode");
+  }
+
+  // Me aseguro de que el botón refleje el estado correcto
+  darkModeButton.checked = claseActual === "dark";
+});

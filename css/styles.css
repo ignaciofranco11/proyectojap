@@ -32,7 +32,7 @@ nav a {
   height: 50vh;
   padding: 5em inherit;
   margin-bottom: 0;
-  background-color: #53C0FB;
+  background-color: #0083c9;
   background: url('../img/cover_back.png');
   background-size: cover;
   background-position: center;
@@ -314,7 +314,6 @@ a.custom-card:hover {
   flex-wrap:initial;
 }
 
-
 .estiloimg img {
 width: 25%;
 padding: 10px;
@@ -331,5 +330,141 @@ margin-top: 20px;
 #contenedor {
   margin-top: 75px;
 }
+.presentation {
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  flex: 1;
+  padding-right: 10px;
+}
 
 
+.imagenes {
+  padding-top: 100px;
+  flex: 1.5;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(8, 8, 8, 0.562);
+  filter: drop-shadow(2px 2px 2px rgba(0, 5, 0, 5, 0, 0.5));
+}
+
+.imgRel {
+  display: flex;
+  width: 50%;
+}
+
+.divRel img {
+  width: 70%;
+}
+/* Estilos para el modo oscuro */
+.dark-mode {
+  background-color: #070605; /* Cambia color de fondo */
+  color: #ffffff; /* Cambia color de texto */
+  transition: .5s ease-in-out;
+}
+
+/* Personalizar otros estilos según necesidades */
+.dark-mode .navbar {
+  background-color: #333;
+}
+
+body, .darkmodez, .jumbotron, .bg-light, .mainimgs {
+  transition: .5s ease-in-out; /* Ajustar duración y temporización según mis preferencias */
+}
+
+body.dark-mode .darkmodez {
+  background-color: #252525;
+color: #eeeeee;
+}
+
+.img-thumbnail {
+  border-color: #1a1a1a; 
+}
+
+body.dark-mode .jumbotron {
+  background-image: url(../img/dark\ cover_back.jpg);
+}
+
+body.dark-mode .bg-light {
+  background-color: #070605;
+  color: #eeeeee; 
+}
+
+body.dark-mode .album {
+  background-color: #070605 !important;
+  color: #eeeeee; 
+}
+
+body.dark-mode .mainimgs .card {
+  background-color: #070605 !important;
+  color: #eeeeee; 
+}
+
+.switch-container {
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #011321;
+}
+
+/* Fondo del botón switch */
+input:focus + .slider {
+  box-shadow: 0 0 1px #00060b;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Estilos para el texto "Modo Día" / "Modo Noche" */
+#modeLabel {
+  margin-left: 10px;
+}
