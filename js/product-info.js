@@ -5,6 +5,7 @@ let URL_PRODUCTO = `https://japceibal.github.io/emercado-api/products/${ProdID}.
 let filledStar = `<i class="fas fa-star" style="color: rgb(218, 165, 32)"></i>`
 let emptyStar = `<i class="far fa-star" style="color: #000000;"></i>`;
 let divRelacionados = document.getElementById("relacionados");
+let botonComprar = document.getElementById("addCart");
 
 function hora() {
 
@@ -33,9 +34,11 @@ function addData(info) {
     <div class="list-group-item list-group-item-action cursor-active">
     <div class="row">
         <div class="col">
-            <div class="d-flex w-100 justify-content-between">
-                <h4 class="mb-1"> ${info.user} ${starsHtml}</h4>
-                <small class="text-muted">${info.dateTime}</small>
+            <div class=" w-100 d-flex justify-content-between">
+            <h4 class="mb-1"> ${info.user}</h4>
+            <small class="text-muted">${info.dateTime}</small>
+            </div>
+            <div class="stars">${starsHtml}</div>
             </div>
             <br>
             <p class="mb-1">${info.description}</p>
@@ -54,6 +57,9 @@ function setProdID(id) {
     localStorage.setItem("ProdID", id);
     window.location = "product-info.html"
 }
+
+let carrito = [];
+
 
 function mostrarRelacionados(Array) {
     let htmlContentToAppend = "";
@@ -92,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="presentation">
             <div class="text">
                 <h2>${data.name}</h2>
+                
                 <hr>
                 <h4>Precio</h4>
                 <p>${data.currency} ${data.cost}</p>
@@ -137,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
             divProducto.innerHTML = htmlContentToAppend;
             mostrarRelacionados(data.relatedProducts);
 
+
         })
         .catch(error => {
             console.error("Error al cargar los datos:", error);
@@ -150,4 +158,39 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error(result.data);
             }
         });
+})
+
+botonComprar.addEventListener("click", () => {
+    fetch(URL_PRODUCTO)
+        .then(response => response.json())
+        .then(data => {
+            let carrito = localStorage.getItem("Carrito");
+
+            // Verificar si carrito es null o no existe en localStorage
+            if (carrito === null) {
+                carrito = [];
+            } else {
+                carrito = JSON.parse(carrito); // Convierte la cadena JSON almacenada en un array
+            }
+
+            let producto = { id: data.id, name: data.name, count: 1, unitCost: data.cost, currency: data.currency, image: data.images[0] };
+            carrito.push(producto);
+
+            // Almacenar el carrito actualizado en localStorage
+            localStorage.setItem("Carrito", JSON.stringify(carrito));
+            Swal.fire({
+                title: 'Exito',
+                text: "Producto agregado al carrito",
+                icon: 'success',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ir al carrito',
+                cancelButtonText: 'Continuar comprando'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "cart.html";
+                }
+            })
+        })
 })

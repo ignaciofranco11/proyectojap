@@ -271,6 +271,7 @@ a.custom-card:hover {
   font-size: 1rem;
   transition: color 0.2s;
 }
+
 #comment-form label {
   font-weight: bold;
 }
@@ -311,12 +312,12 @@ a.custom-card:hover {
 .estiloimg {
   display: flex;
   justify-content: center;
-  flex-wrap:initial;
+  flex-wrap: initial;
 }
 
 .estiloimg img {
-width: 25%;
-padding: 10px;
+  width: 25%;
+  padding: 10px;
 }
 
 #infoProducto h2 {
@@ -334,12 +335,15 @@ margin-top: 20px;
   display: flex;
   align-items: center;
 }
-
 .text {
   flex: 1;
   padding-right: 10px;
 }
 
+.presentation {
+  display: flex;
+  align-items: center;
+}
 
 .imagenes {
   padding-top: 100px;
@@ -362,8 +366,10 @@ margin-top: 20px;
 }
 /* Estilos para el modo oscuro */
 .dark-mode {
-  background-color: #070605; /* Cambia color de fondo */
-  color: #ffffff; /* Cambia color de texto */
+  background-color: #070605;
+  /* Cambia color de fondo */
+  color: #ffffff;
+  /* Cambia color de texto */
   transition: .5s ease-in-out;
 }
 
@@ -371,13 +377,22 @@ margin-top: 20px;
 .dark-mode .navbar {
   background-color: #333;
 }
-
-body, .darkmodez, .jumbotron, .bg-light, .mainimgs {
-  transition: .5s ease-in-out; /* Ajustar duración y temporización según mis preferencias */
+body,
+.darkmodez,
+.jumbotron,
+.bg-light,
+.mainimgs {
+  transition: .5s ease-in-out;
+  /* Ajustar duración y temporización según mis preferencias */
 }
 
 body.dark-mode .darkmodez {
   background-color: #252525;
+  color: #eeeeee;
+}
+
+.img-thumbnail {
+  border-color: #1a1a1a;
 color: #eeeeee;
 }
 
@@ -391,17 +406,31 @@ body.dark-mode .jumbotron {
 
 body.dark-mode .bg-light {
   background-color: #070605;
-  color: #eeeeee; 
+  color: #eeeeee;
 }
 
-body.dark-mode .album {
+body.dark-mode .album,
+body.dark-mode .commentcontain * {
   background-color: #070605 !important;
-  color: #eeeeee; 
+  color: #eeeeee;
 }
 
-body.dark-mode .mainimgs .card {
+body.dark-mode .mainimgs,
+body.dark-mode .card,
+body.dark-mode #cat-list-container * {
   background-color: #070605 !important;
-  color: #eeeeee; 
+  color: #eeeeee;
+}
+
+body.dark-mode .categoryarray,
+.commentcontain>div {
+  border: 1px grey solid;
+  margin: 2px;
+}
+
+body.dark-mode .sectionsarray,
+.productsArray {
+  border: 1px grey solid;
 }
 
 .switch-container {
@@ -449,16 +478,16 @@ body.dark-mode .mainimgs .card {
   border-radius: 50%;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: #011321;
 }
 
 /* Fondo del botón switch */
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px #00060b;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
@@ -467,4 +496,145 @@ input:checked + .slider:before {
 /* Estilos para el texto "Modo Día" / "Modo Noche" */
 #modeLabel {
   margin-left: 10px;
+}
+
+#dropdownMenuButton1,
+#muchomasbtn,
+#username,
+#sellbtn,
+#btnSend {
+  background: rgba(255, 158, 12);
+  color: rgb(25, 25, 25);
+}
+
+#tableCart {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#tableCart img {
+  width: 70px;
+  vertical-align: middle;
+}
+
+.dark-mode #tableCart {
+  color: white;
+}
+
+#addCart {
+  margin-top: 50px;
+  float: right;
+}
+
+#envio {
+
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+#envio label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+#envio select,
+#envio input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#envio button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#envio button:hover {
+  background-color: #0056b3;
+}
+
+#tableCart {
+  width: 100%;
+}
+
+.table th,
+.table td {
+  text-align: center;
+}
+
+.table th {
+  background-color: rgb(15, 15, 15);
+  ;
+  color: #fff;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table tbody tr:hover {
+  background-color: #d3eaf5;
+}
+
+/*button[type="submit"]:hover {
+  background-color: #2a90e4;
+}*/
+#rangeFilterCountMin, #rangeFilterCountMax {
+  max-width: 100px;
+  justify-content: center;
+  float: none;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(248, 248, 254);
+
+}
+
+@media (width<=600px) {
+  #muchomasbtn {
+    margin-top: 3.5rem;
+    width: 50%;
+  }
+  
+  #rangeFilterCountMin, #rangeFilterCountMax {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  #contenedorLogin {
+    display: flex;
+    justify-self: center;
+    margin-top: 55%;
+  }
+  #formLogin {
+  }
+}
+
+@media (width>=600px) {
+  .max-width {
+    max-width: 500px;
+    justify-self: end;
+  }
+}
+
+@media (max-width: 600px) {
+  .stars {
+    display: flex;
+    flex-direction:row;
+  }
 }

@@ -41,7 +41,7 @@
                 <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
                 <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
                 <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
-                <li>   <div class="switch-container">
+                <li>   <div class="switch-container justify-content-center" >
         <label class="switch">
           <input type="checkbox" id="darkModeSwitch">
           <span class="slider round"></span>
@@ -62,8 +62,14 @@
       <input type="search" id="filtrado" placeholder="Búsqueda">
     </div>
     <div class="container">
-      <div class="row">
-        <div class="col text-end">
+      <div class="row d-flex justify-content-center">
+        <div class="col text-end d-flex gap-3 max-width justify-content-center">
+                      <div class="col">
+              <input class="form-control" type="number" placeholder="mín." id="rangeFilterCountMin">
+            </div>
+            <div class="col">
+              <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax">
+            </div>
           <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
             <input type="radio" class="btn-check" name="options" id="sortDesc">
             <label class="btn btn-light" for="sortDesc">$↓</label>
@@ -75,16 +81,10 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+        <div class="col-12 mb-1 container d-flex justify-content-center">
           <div class="row container p-0 m-0">
             <div class="col">
               <p class="font-weight-normal text-end my-2">Cant.</p>
-            </div>
-            <div class="col">
-              <input class="form-control" type="number" placeholder="mín." id="rangeFilterCountMin">
-            </div>
-            <div class="col">
-              <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax">
             </div>
             <div class="col-3 p-0">
               <div class="btn-group" role="group">
@@ -95,7 +95,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row m-0"">
         <div class="list-group" id="cat-list-container">
         </div>
       </div>
