@@ -29,7 +29,8 @@ nav a {
 }
 
 .jumbotron {
-  height: 50vh;
+  width: 100vw;
+  height: 33vw;
   padding: 5em inherit;
   margin-bottom: 0;
   background-color: #0083c9;
@@ -39,6 +40,7 @@ nav a {
   background-repeat: no-repeat;
   color: black;
   font-weight: bold;
+
 }
 
 @media (min-width: 768px) {

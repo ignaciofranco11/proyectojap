@@ -57,15 +57,16 @@
       </div>
     </div>
   </nav>
-  <main>
-    <div class="container">
+  <main class="container">
+    <div class="container text-center">
       <br>
       <h1 class="text-center">Carrito de compras</h1>
       <br>
       <h3>Articulos a comprar</h3>
       <br>
       <div>
-        <table class="table" id="tableCart">
+        <div class="table-responsive">
+          <table class="table table-sm text-center" id="tableCart">
           <thead>
             <tr>
               <th scope="col" class="col-sm-1"></th>
@@ -79,7 +80,7 @@
 
           </tbody>
         </table>
-        <div id="envio">
+        <div id="envio" class="text-center">
           <label for="shippingType">Tipo de Envío:</label>
           <select id="shippingType" name="shippingType">
             <option value="premium">Premium 2 a 5 días (15%)</option>

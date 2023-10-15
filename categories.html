@@ -21,7 +21,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
+        <ul class="navbar-nav w-100 justify-content-between align-items-center">
           <li class="nav-item">
             <a class="nav-link active" href="index.html">Inicio</a>
           </li>
@@ -34,17 +34,17 @@
           </li>
           <li class="nav-item">
             <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="btn btn-secondary dropdown-toggle d-flex align-items-center" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <span id="username" class = "nav-link"></span>
               </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
                 <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
                 <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
                 <li>   <div class="switch-container justify-content-center">
         <label class="switch">
           <input type="checkbox" id="darkModeSwitch">
-          <span class="slider round"></span>
+          <span class="slider round "></span>
         </label>
         <span id="modeLabel"></span>
       </div> </li>
@@ -55,10 +55,10 @@
       </div>
     </div>
   </nav>
-  <main class="pb-5">
+  <main class="pb-5 container">
     <div class="text-center p-3 mt-2">
       <h2>Categorías</h2>
-      <p class="lead">Verás aquí todas las categorías del sitio.</p>
+      <p class=>Verás aquí todas las categorías del sitio.</p>
     </div>
     <div class="container">
       <div class="row">
@@ -77,20 +77,19 @@
         <div class="col-lg-6 offset-lg-3 col-md-12 mb-1 container">
           <div class="row container p-0 m-0">
             <div class="col d-flex justify-content-center">
-              <p class="font-weight-normal text-end my-2">Cant.</p>
-            </div>
-            <div class="col d-flex justify-content-center">
-              <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">
+              <input class="form-control" type="number" placeholder="mín." id="rangeFilterCountMin">
             </div>
             <div class="col d-flex justify-content-center">
               <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax">
             </div>
-            <div class="col-3 p-0">
-              <div class="btn-group" role="group">
-                <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
-                <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+            <div class="col-12 mb-1 container d-flex justify-content-center">
+              <div class="p-0 mb-3 mt-4">
+                <div class="btn-group" role="group">
+                  <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
+                  <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+                </div>
               </div>
-            </div>
+        </div>
           </div>
         </div>
       </div>

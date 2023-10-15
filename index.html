@@ -20,7 +20,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
+        <ul class="navbar-nav w-100 justify-content-between align-items-center">
           <li class="nav-item">
             <a class="nav-link active" href="index.html">Inicio</a>
           </li>
@@ -33,20 +33,20 @@
           </li>
           <li class="nav-item">
             <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="btn btn-secondary dropdown-toggle d-flex align-items-center" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <span id="username" class = "nav-link"></span>
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
                 <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
                 <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
-                                <li>   <div class="switch-container justify-content-center">
-        <label class="switch">
-          <input type="checkbox" id="darkModeSwitch">
-          <span class="slider round"></span>
-        </label>
-        <span id="modeLabel"></span>
-      </div> </li>
+                <li>   <div class="switch-container justify-content-center">
+                  <label class="switch">
+                    <input type="checkbox" id="darkModeSwitch">
+                    <span class="slider round "></span>
+                  </label>
+                  <span id="modeLabel"></span>
+                </div> </li>
               </ul>
             </div>
           </li>
@@ -59,17 +59,17 @@
     <div class="album py-5 bg-light">
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4 sectionsarray">
             <div class="card mb-4 shadow-sm custom-card cursor-active" id="autos">
               <img class="bd-placeholder-img card-img-top" src="img/cars_index.jpg"
-                alt="Imgagen representativa de la categoría 'Autos'">
+                alt="Imagen representativa de la categoría 'Autos'">
               <h3 class="m-3">Autos</h3>
               <div class="card-body">
                 <p class="card-text">Los mejores precios en autos 0 kilómetro, de alta y media gama.</p>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 sectionsarray">
             <div class="card mb-4 shadow-sm custom-card cursor-active" id="juguetes">
               <img class="bd-placeholder-img card-img-top" src="img/toys_index.jpg"
                 alt="Imgagen representativa de la categoría 'Juguetes'">
@@ -79,7 +79,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 sectionsarray">
             <div class="card mb-4 shadow-sm custom-card cursor-active" id="muebles">
               <img class="bd-placeholder-img card-img-top" src="img/furniture_index.jpg"
                 alt="Imgagen representativa de la categoría 'Muebles'">
@@ -91,7 +91,7 @@
           </div>
         </div>
         <div class="row d-flex justify-content-center">
-          <a class="btn btn-light btn-lg btn-block" href="categories.html">Y mucho más!</a>
+          <a class="btn btn-light btn-lg btn-block" href="categories.html" id="muchomasbtn">Y mucho más!</a>
         </div>
       </div>
     </div>
