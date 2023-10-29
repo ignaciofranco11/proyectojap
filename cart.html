@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -74,33 +73,149 @@
               <th scope="col" class="col-sm-1">Costo</th>
               <th scope="col" class="col-sm-1">Cantidad</th>
               <th scope="col" class="col-sm-1">Subtotal</th>
+              <th scope="col" class="col-sm-1"></th>
             </tr>
           </thead>
+             <tr id="primerProducto"></tr>
           <tbody id="infoCart">
 
           </tbody>
         </table>
+        <br>
+        <form id="formCompra" class="needs-validation" novalidate>
         <div id="envio" class="text-center">
-          <label for="shippingType">Tipo de Envío:</label>
-          <select id="shippingType" name="shippingType">
+          <label class="envios">Tipo de Envío:</label>
+          <br>
+          <div class="form-check">
+             <select id="shippingType" name="shippingType">
             <option value="premium">Premium 2 a 5 días (15%)</option>
             <option value="express">Express 5 a 8 días (7%)</option>
             <option value="standard">Standard 12 a 15 días (5%)</option>
           </select>
+          </div>
           <br>
-          <label for="street">Calle:</label>
-          <input type="text" id="street" name="street" required>
+          <label class="envios">Dirección de Envío:</label>
           <br>
-          <label for="number">Número:</label>
-          <input type="text" id="number" name="number" required>
+          <label for="street" class="envios form-label">Calle:</label>
+          <div class="input-group has-validation">
+            <input type="text" class="form-control" aria-describedby="inputGroupPrepend" id="street" name="street" required>
+            <div class="envios invalid-feedback">
+              Ingrese una calle
+            </div>
+          </div>
           <br>
-          <label for="corner">Esquina:</label>
-          <input type="text" id="corner" name="corner">
+          <label for="number" class="envios form-label">Número:</label>
+          <div class="input-group has-validation">
+            <input type="text" class="form-control" id="number" name="number" aria-describedby="inputGroupPrepend" required>
+            <div class="envios invalid-feedback">
+              Ingrese un número
+            </div>
+          </div>
           <br>
-          <button id="confirmButton">Confirmar Envío</button>
-        </div>
+          <label for="corner" class="envios form-label">Esquina:</label>
+          <div class="input-group has-validation">
+            <input type="text" class="form-control" id="corner" name="corner" aria-describedby="inputGroupPrepend" required>
+            <div class="envios invalid-feedback">
+              Ingrese una esquina
+            </div>
+          </div>
+        <br>
+      
+        <!-- Botón de "Seleccionar" para abrir la ventana modal-->
+<label class="envios">Forma de Pago:</label> 
+
+<label id="payment-selection" class="envios">No ha seleccionado</label>
+<div class="envios">
+<a id="select-payment-button" class="link" style="font-size:15px;">Seleccionar</a>
+        <br>
+        <div id="pago">
+          
       </div>
     </div>
+    </div><br>
+
+    <div id="totalSection">
+      <h3>Resumen de la compra</h3>
+      <p>Subtotal General: <span id="subtotalCantidad"></span></p>
+      <p>Costo de Envío: <span id="envioCosto"></span></p>
+      <p>Total a Pagar: <span id="totalCantidad"></span></p>
+    </div>
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="submit" id="compra">Finalizar compra</button>
+      </div>
+    </form> 
+
+     <!-- Modal para la forma de pago -->
+     <form id="formModal" class="needs-validation" novalidate>   
+     <div id="payment-modal" class="modal">
+      <div class="modal-content">
+          <span class="close" id="close-modal">&times;</span>
+          
+          </div><h4 class="envios">Forma de pago: <span id="payment-type-display"></span></h4><br>
+
+          
+          <div class="form-check">
+            <input type="radio" class="form-check-input" name="payment-option" value="credit-card" id="credit-card" required>
+            <label class="envios form-check-label" for="credit-card">Tarjeta de Crédito</label>
+            </div><br>
+            
+
+            <div id="credit-card-fields">
+              
+                <label for="card-number" class="form-label">Número de tarjeta:</label>
+                <div class="input-group has-validation">
+                  <input type="text" id="card-number" class="form-control" aria-describedby="inputGroupPrepend" name="card-number" required>
+                  <div class="envios invalid-feedback">
+                    Ingrese un número de tarjeta
+                  </div>
+                  
+              
+              </div><br>
+                <label for="security-code">Código de seguridad:</label>
+                <div class="input-group has-validation">
+                  <input type="text" id="security-code" class="form-control" aria-describedby="inputGroupPrepend" name="security-code" required>
+                  <div class="envios invalid-feedback">
+                    Ingrese el código de seguridad
+                  </div>
+                  </div><br>
+    
+      
+              
+                <label for="expiration-date">Vencimiento (MM/AA):</label>
+                <div class="input-group has-validation">
+                  <input type="text" id="expiration-date" class="form-control" aria-describedby="inputGroupPrepend" name="expiration-date" required>
+                  <div class="envios invalid-feedback">
+                    Ingrese el vencimiento
+                  </div>
+                
+              </div></div><br>
+            
+              <div class="form-check">
+                <input type="radio" class="form-check-input" name="payment-option" value="bank-transfer" id="bank-transfer">
+                <label class="envios form-check-label" for="bank-transfer">Transferencia Bancaria</label>
+                </div><br>
+               
+                <div id="bank-transfer-fields">
+                  
+                    <label for="account-number">Número de cuenta:</label>
+                    <div class="input-group has-validation">
+                      <input type="text" id="account-number" class="form-control" aria-describedby="inputGroupPrepend" name="account-number" required>
+                      <div class="envios invalid-feedback">
+                        Ingrese un número de cuenta
+                      </div>
+                      </div>
+                    
+                  
+                </div>
+                <button type="submit" id="save-payment" class="btn btn-primary">Guardar</button>
+              </div>
+              
+        
+        
+      </div>
+    </div>
+  </form>
+
   </main>
   <footer class="text-muted">
     <div class="container">
