@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-    const paymentTypeDisplay = document.getElementById("payment-type-display");    
+    const paymentTypeDisplay = document.getElementById("payment-type-display");
     const selectPaymentButton = document.getElementById("select-payment-button");
     const paymentSelection = document.getElementById("payment-selection");
     const paymentModal = document.getElementById("payment-modal");
@@ -27,10 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const creditCardFields = document.getElementById("credit-card-fields");
     const bankTransferFields = document.getElementById("bank-transfer-fields");
     let formModal = document.getElementById("formModal");
-    
 
 
-//Muestra la ventana Modal cuando se hace click en "seleccionar"
+
+    //Muestra la ventana Modal cuando se hace click en "seleccionar"
     selectPaymentButton.addEventListener("click", () => {
         paymentModal.style.display = "block";
     });
@@ -40,19 +40,19 @@ document.addEventListener("DOMContentLoaded", () => {
         paymentModal.style.display = "none";
     });
 
-// Guardar la forma de pago
+    // Guardar la forma de pago
     savePayment.addEventListener("click", () => {
         let selectedPayment = "";
-        
+
         paymentOptions.forEach((option) => {
             if (option.checked) {
                 selectedPayment = option.value;
                 paymentSelection.innerHTML = selectedPayment;
-                
-            } 
+
+            }
         });
         if (formModal.checkValidity()) {
-        paymentModal.style.display = "none";
+            paymentModal.style.display = "none";
         }
     });
 
@@ -77,22 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-/*const shippingTypeSelect = document.getElementById("shippingType");
-const streetInput = document.getElementById("street");
-const numberInput = document.getElementById("number");
-const cornerInput = document.getElementById("corner");
-const confirmButton = document.getElementById("confirmButton");
 
-confirmButton.addEventListener("click", confirmShipping);
-
-function confirmShipping() {
-    const selectedShippingType = shippingTypeSelect.value;
-    const selectedStreet = streetInput.value;
-    const selectedNumber = numberInput.value;
-    const selectedCorner = cornerInput.value;
-
-
-}*/
 function modificar(data) {
     let subtotalProducto = document.getElementById('subtotalProducto');
     let cant = document.getElementById('cantidad');
@@ -107,12 +92,12 @@ function recalcular() {
     let subTotal = document.getElementsByClassName("subtotal");
     let total = 0;
     let moneda = document.getElementsByClassName("moneda");
-    let monedaSubTotal = document.getElementsByClassName ("monedaSubTotal");
+    let monedaSubTotal = document.getElementsByClassName("monedaSubTotal");
 
     for (let i = 0; i < cantidad.length; i++) {
-        if (moneda[i].innerHTML=="UYU") {
+        if (moneda[i].innerHTML == "UYU") {
             let conversion = parseFloat(costo[i].innerHTML);
-            costo[i].innerHTML = (conversion/39).toFixed(2);  
+            costo[i].innerHTML = (conversion / 39).toFixed(2);
             moneda[i].innerHTML = "USD";
             monedaSubTotal[i].innerHTML = "USD";
         }
@@ -125,29 +110,29 @@ function recalcular() {
     }
     subtotalCantidad.innerHTML = total.toFixed(2);
 
-        // Obtengo el porcentaje de envío en base al tipo seleccionado
-        let envioPorcentaje = 0;
-        switch (tipodeEnvio.value) {
-            case 'premium':
-                envioPorcentaje = 0.15;
-                break;
-            case 'express':
-                envioPorcentaje = 0.07;
-                break;
-            case 'standard':
-                envioPorcentaje = 0.05;
-                break;
-        }
+    // Obtengo el porcentaje de envío en base al tipo seleccionado
+    let envioPorcentaje = 0;
+    switch (tipodeEnvio.value) {
+        case 'premium':
+            envioPorcentaje = 0.15;
+            break;
+        case 'express':
+            envioPorcentaje = 0.07;
+            break;
+        case 'standard':
+            envioPorcentaje = 0.05;
+            break;
+    }
 
-        // Calculo el costo de envío y el total a pagar
-        let envio = total * envioPorcentaje;
-        envioCosto.innerHTML = envio.toFixed(2);
-/*         const total = subtotal + envio; */
-totalCantidad.innerHTML = (envio + total).toFixed(2);
-    
+    // Calculo el costo de envío y el total a pagar
+    let envio = total * envioPorcentaje;
+    envioCosto.innerHTML = envio.toFixed(2);
+    /*         const total = subtotal + envio; */
+    totalCantidad.innerHTML = (envio + total).toFixed(2);
+
 }
 
-function primeraFila(){
+function primeraFila() {
     document.getElementById('primerProducto').innerHTML = ""
 }
 
@@ -198,71 +183,48 @@ function completarCarro() {
     let formCompra = document.getElementById("formCompra");
     let divFormadePago = document.getElementById("pago");
     const selectPaymentButton = document.getElementById("select-payment-button");
-  
-      formCompra.addEventListener("submit", event => {
+
+    formCompra.addEventListener("submit", event => {
         divFormadePago.innerHTML = "";
         formCompra.classList.add('was-validated');
         if (!formModal.checkValidity()) {
-        event.preventDefault();
-        divFormadePago.classList.add('feedback-negativo');
-        divFormadePago.innerHTML = "Debe seleccionar una forma de pago";
-        selectPaymentButton.classList.add('feedback-negativo');
+            event.preventDefault();
+            divFormadePago.classList.add('feedback-negativo');
+            divFormadePago.innerHTML = "Debe seleccionar una forma de pago";
+            selectPaymentButton.classList.add('feedback-negativo');
         }
-        
-        
+
+
         if (!formCompra.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
+            event.preventDefault();
+            event.stopPropagation();
         }
-        
-        
-        if(formCompra.checkValidity() && formModal.checkValidity()) {
+
+
+        if (formCompra.checkValidity() && formModal.checkValidity()) {
             event.preventDefault();
             Swal.fire({
                 title: 'Compra realizada',
                 icon: 'success',
                 showCancelButton: false,
             })
-            .then(() => {
-                window.location.href = "cart.html";
-            });
+                .then(() => {
+                    window.location.href = "cart.html";
+                });
         }
-      }, false)
-      formModal.addEventListener("submit", event => {
+    }, false)
+    formModal.addEventListener("submit", event => {
         if (!formModal.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();
-          }
-          formModal.classList.add('was-validated');
-    if (formModal.checkValidity()) {
-      event.preventDefault();
-      divFormadePago.classList.remove('feedback-negativo');
-      divFormadePago.innerHTML = "";
-      selectPaymentButton.classList.remove('feedback-negativo');
-    }
-}, false);
-    
-  })()
+        }
+        formModal.classList.add('was-validated');
+        if (formModal.checkValidity()) {
+            event.preventDefault();
+            divFormadePago.classList.remove('feedback-negativo');
+            divFormadePago.innerHTML = "";
+            selectPaymentButton.classList.remove('feedback-negativo');
+        }
+    }, false);
 
-/*let shippingHtml = `
-
-            <label for="shippingType">Tipo de Envío:</label>
-            <select id="shippingType" name="shippingType">
-              <option value="premium">Premium 2 a 5 días (15%)</option>
-              <option value="express">Express 5 a 8 días (7%)</option>
-              <option value="standard">Standard 12 a 15 días (5%)</option>
-            </select>
-         
-            <label for="street">Calle:</label>
-            <input type="text" id="street" name="street" required>
-         
-            <label for="number">Número:</label>
-            <input type="text" id="number" name="number" required>
-         
-            <label for="corner">Esquina:</label>
-            <input type="text" id="corner" name="corner">
-         
-            <button id="confirmButton">Confirmar Envío</button>`;
-
-
-cart.innerHTML += shippingHtml;*/
+})()

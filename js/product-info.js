@@ -6,6 +6,7 @@ let filledStar = `<i class="fas fa-star" style="color: rgb(218, 165, 32)"></i>`
 let emptyStar = `<i class="far fa-star" style="color: #000000;"></i>`;
 let divRelacionados = document.getElementById("relacionados");
 let botonComprar = document.getElementById("addCart");
+let carrito = [];
 
 function hora() {
 
@@ -20,6 +21,8 @@ function hora() {
 
     return fechaHoraFormateada = `${año}-${mes}-${dia} ${horas}:${minutos}:${segundos}`;
 }
+
+//Genera una fila con la informacion
 function addData(info) {
     let htmlContentToAppend = "";
     let starsHtml = "";
@@ -47,18 +50,18 @@ function addData(info) {
  </div>`
     contenedor.innerHTML += htmlContentToAppend;
 }
+
+//Recorre el arreglo con todos los comentarios y genera una fila por cada uno
 function showComments(Array) {
     for (const comment of Array) {
         addData(comment)
     }
 }
-
+//Guarda la id del producto seleccionado en el localStorage y nos redirige a product-info.html
 function setProdID(id) {
     localStorage.setItem("ProdID", id);
     window.location = "product-info.html"
 }
-
-let carrito = [];
 
 
 function mostrarRelacionados(Array) {
@@ -76,6 +79,8 @@ function mostrarRelacionados(Array) {
     divRelacionados.innerHTML = htmlContentToAppend;
 }
 
+
+//Cuando hacemos clic en enviar se agrega el comentario
 let btnSend = document.getElementById("btnSend");
 btnSend.addEventListener("click", function () {
     let comment = document.getElementById("comment")
@@ -160,6 +165,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 })
 
+
+//Cuando hacemos clic en comprar agrega el producto al carrito y tira una alerta para seguir comprando o ir al carrito.
 botonComprar.addEventListener("click", () => {
     fetch(URL_PRODUCTO)
         .then(response => response.json())
