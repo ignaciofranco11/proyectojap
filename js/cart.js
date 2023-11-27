@@ -3,19 +3,36 @@ let tipodeEnvio = document.getElementById('shippingType');
 let envioCosto = document.getElementById('envioCosto');
 let totalCantidad = document.getElementById('totalCantidad');
 let subtotalCantidad = document.getElementById('subtotalCantidad');
+let nombreUsuario = JSON.parse(sessionStorage.getItem("sesion"))
 
-document.addEventListener("DOMContentLoaded", () => {
-    const url = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
-    getJSONData(url)
-        .then(result => {
-            if (result.status === "ok") {
-                ShowCartData(result.data.articles[0]);
-                completarCarro();
+window.onload = function () {
+    const url = `http://localhost:3000/cart/${nombreUsuario.usuario}`;
+    let token = JSON.parse(sessionStorage.getItem("token"));
+    console.log(token);
+    fetch(url, {
+        method: 'GET',
+        mode: 'cors',
+        headers: { "token": token.token },
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data.articles);
+            if (data.articles && data.articles.length > 0) {
+                //ShowCartData(data.articles[0]);
+                completarCarro(data.articles);
                 recalcular();
             } else {
-                console.error(result.data);
+                // Manejar el caso en que no hay artículos en la respuesta
+                console.error("No se encontraron artículos en la respuesta.");
             }
+        })
+        .catch(error => {
+            console.error("Error al obtener los datos del carrito:", error);
         });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
 
     const paymentTypeDisplay = document.getElementById("payment-type-display");
     const selectPaymentButton = document.getElementById("select-payment-button");
@@ -136,7 +153,7 @@ function primeraFila() {
     document.getElementById('primerProducto').innerHTML = ""
 }
 
-function ShowCartData(data) {
+/*function ShowCartData(data) {
     let htmlContentToAppend = "";
     htmlContentToAppend += `<tr>   
                     <td><img class="img-fluid" src="${data.image}" alt=""></td>
@@ -147,24 +164,50 @@ function ShowCartData(data) {
                     <td class="align-middle"><input type="button" onclick="primeraFila()" value="X" class="id"></td>
                     </tr>`;
     document.getElementById('primerProducto').innerHTML = htmlContentToAppend;
-}
+}*/
 
 function borrar(index) {
     let carrito = JSON.parse(localStorage.getItem("Carrito"));
     carrito.splice(index, 1);
     localStorage.setItem("Carrito", JSON.stringify(carrito));
-    completarCarro();
-    recalcular();
+    let cuerpo = JSON.stringify({
+        "email": nombreUsuario.usuario,
+        "articles": carrito
+    });
+    let token = JSON.parse(sessionStorage.getItem("token"));
+    fetch("http://localhost:3000/cart", {
+        method: 'POST',
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+            "token": token.token
+        },
+        body: cuerpo
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data.articles);
+            if (data.articles && data.articles.length > 0) {
+                //ShowCartData(data.articles[0]);
+                completarCarro(data.articles);
+                recalcular();
+            } else {
+                // Manejar el caso en que no hay artículos en la respuesta
+                console.error("No se encontraron artículos en la respuesta.");
+            }
+        })
+        .catch(error => {
+            console.error("Error al obtener los datos del carrito:", error);
+        });
 }
 
 // Escucho el evento 'change' en el tipo de envío para actualizar los valores cuando cambie
 tipodeEnvio.addEventListener('change', recalcular);
 
-function completarCarro() {
-    let carrito = JSON.parse(localStorage.getItem("Carrito"));
+function completarCarro(array) {
     let htmlContentToAppend = "";
 
-    for (let [index, producto] of carrito.entries()) {
+    for (let [index, producto] of array.entries()) {
         htmlContentToAppend += `<tr class="filas">   
         <td><img class="img-fluid" src="${producto.image}" alt=""></td>
         <td class="align-middle">${producto.name}</td>

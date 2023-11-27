@@ -1,12 +1,14 @@
 let ProdID = localStorage.getItem("ProdID");
 let divProducto = document.getElementById("infoProducto");
-PRODUCTS_COMMENTS = `https://japceibal.github.io/emercado-api/products_comments/${ProdID}.json`;
-let URL_PRODUCTO = `https://japceibal.github.io/emercado-api/products/${ProdID}.json`;
+PRODUCTS_COMMENTS = `http://localhost:3000/comentariosProductos/${ProdID}`;
+let URL_PRODUCTO = `http://localhost:3000/productos/${ProdID}`;
 let filledStar = `<i class="fas fa-star" style="color: rgb(218, 165, 32)"></i>`
 let emptyStar = `<i class="far fa-star" style="color: #000000;"></i>`;
 let divRelacionados = document.getElementById("relacionados");
 let botonComprar = document.getElementById("addCart");
+let nombreUsuario = JSON.parse(sessionStorage.getItem("sesion"))
 let carrito = [];
+let token = JSON.parse(sessionStorage.getItem("token"));
 
 function hora() {
 
@@ -163,6 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error(result.data);
             }
         });
+
 })
 
 
@@ -172,6 +175,7 @@ botonComprar.addEventListener("click", () => {
         .then(response => response.json())
         .then(data => {
             let carrito = localStorage.getItem("Carrito");
+
 
             // Verificar si carrito es null o no existe en localStorage
             if (carrito === null) {
@@ -183,8 +187,12 @@ botonComprar.addEventListener("click", () => {
             let producto = { id: data.id, name: data.name, count: 1, unitCost: data.cost, currency: data.currency, image: data.images[0] };
             carrito.push(producto);
 
+
             // Almacenar el carrito actualizado en localStorage
             localStorage.setItem("Carrito", JSON.stringify(carrito));
+
+
+
             Swal.fire({
                 title: 'Exito',
                 text: "Producto agregado al carrito",
@@ -196,8 +204,38 @@ botonComprar.addEventListener("click", () => {
                 cancelButtonText: 'Continuar comprando'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    let carrito = JSON.parse(localStorage.getItem("Carrito"));
+                    let cuerpo = JSON.stringify({
+                        "email": nombreUsuario.usuario,
+                        "articles": carrito
+                    });
+                    fetch("http://localhost:3000/cart", {
+                        method: 'POST',
+                        mode: "cors",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "token": token.token
+                        },
+                        body: cuerpo
+                    })
                     window.location.href = "cart.html";
+                } else {
+                    let carrito = JSON.parse(localStorage.getItem("Carrito"));
+                    let cuerpo = JSON.stringify({
+                        "email": nombreUsuario.usuario,
+                        "articles": carrito
+                    });
+                    fetch("http://localhost:3000/cart", {
+                        method: 'POST',
+                        mode: "cors",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "token": token.token
+                        },
+                        body: cuerpo
+                    })
                 }
             })
         })
+
 })
